@@ -48,13 +48,13 @@ INT32 main()
  * 其它说明： 无
  * 修改日期            版本号            修改人           修改内容
  * ----------------------------------------------------------------------
- * 20151123             V1.0          Zhou Zhaoxiong        创建
+ * 20151123             V1.0          Zhou Zhaoxiong       创建
  ************************************************************************/
 void WriteFileNonStop(void)
 {
-    FILE  *fp                  = NULL;
-    INT8   szContentBuf[200]   = {0};
-	INT8   szBakName[MAX_PATHLEN]      = {0};
+    FILE  *fp                     = NULL;
+    INT8   szContentBuf[200]      = {0};
+    INT8   szBakName[MAX_PATHLEN] = {0};
     
     snprintf(g_szLocalFile, sizeof(g_szLocalFile)-1, "%s/zhouzhaoxiong/zzx/FileBak/File/File.txt", getenv("HOME"));
     fp = fopen(g_szLocalFile, "a+");
@@ -64,10 +64,10 @@ void WriteFileNonStop(void)
          return;
     }
 
-	while (1)      // 不停地写文件
-	{
-	    // 先判断文件大小是否超过设定值, 如果是, 则生成新的文件
-		if (ftell(fp) >= MAX_FILESIZE)      // 设定每个文件的大小上限
+    while (1)      // 不停地写文件
+    {
+        // 先判断文件大小是否超过设定值, 如果是, 则生成新的文件
+	if (ftell(fp) >= MAX_FILESIZE)      // 设定每个文件的大小上限
         {
             fclose(fp);
             fp = NULL;
@@ -78,14 +78,14 @@ void WriteFileNonStop(void)
             fp = fopen(g_szLocalFile, "wt+");                    // 新建空文件
         }
 		
-	    strcpy(szContentBuf, "hello, world!\n");
+	strcpy(szContentBuf, "hello, world!\n");
         printf("WriteFileNonStop: LocalFile=%s, ContentBuf=%s", g_szLocalFile, szContentBuf);
 
         fputs(szContentBuf, fp);
         fflush(fp);
 		
-		Sleep(1 * 1000);   // 每1s写一次
-	}
+	Sleep(1 * 1000);   // 每1s写一次
+    }
 
     fclose(fp);
     fp = NULL;

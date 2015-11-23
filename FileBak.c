@@ -102,10 +102,10 @@ INT8 *GetField(INT8 *szBuf, INT8 *szDivStr, INT8 iIndex)
     INT8  *pStr      = NULL;
     INT32  iLoopFlag = 0;
 	
-	memset(g_szField, 0x00, sizeof(g_szField));	
+    memset(g_szField, 0x00, sizeof(g_szField));	
 	
     do
-	{
+    {
         if (NULL == szBuf || strlen(szBuf) == 0 || iIndex <= 0 || iIndex > GetFieldNum(szBuf, szDivStr))
         {
             break;
